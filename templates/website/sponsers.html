@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Sponsors</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- styles -->
+    {% load staticfiles %}
+ <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'ext/css/style.css' %}" rel="stylesheet">
+    
+    <style>
+        img{
+             display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        .div1{
+            max-height: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5%;
+        }
+        .lines{
+            width: 100%;
+            height: 9px;
+            margin-bottom: 7%;
+            border-top: solid black;
+            border-bottom: solid black;
+        }
+        .sponsor{
+            font-family: 'Old English Text MT',cursive;
+            text-align: center;
+            font-size:6vw;
+            margin-top: 10px;
+            margin-bottom: 30px
+        }
+        @media screen and (max-width: 600px) {
+            .sponsor {
+                font-size: 10vw;
+                margin-bottom: 12%;
+            }
+            .div1{
+                margin-bottom: 20%;
+            }
+            .name-sponsor{
+                font-size: 3vw;
+            }
+        }
+
+            @media (min-width: 600px) and (max-width: 800px) {
+                .sponsor{
+                    font-size: 10vw;
+                }
+        }
+        @media (min-width: 800px) and (max-width: 1000px){
+            .sponsor{
+                font-size: 8vw;
+            }
+
+        }
+    </style>
+</head>
+<body style="background-color: whitesmoke">
+<header id="header" style="background-color: black">
+    <div >
+
+      <div id="logo" class="pull-left" style="margin-top: -10px">
+
+
+         <a href="/"><img style="width: 40px;height: 40px" src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+           <li><a href="/">Home</a></li>
+               <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/sponsors">sponsers</a></li>
+                <li><a href="/team">Team</a></li>
+               <li><a href="/gallery">Gallery</a></li>
+               {% if user.is_authenticated %}
+                  <li><a class="menu-active" href="{% url 'accounts:profile' %}">
+                      Welcome {{ user.username }}
+                  </a></li>
+                   {%  else %}
+                   <li><a href="/users/sign_in">
+                      Login
+                  </a></li>
+
+                   {% endif %}
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+     <section style="height: auto; margin-top:100px; margin-bottom: 30px; padding-bottom:30px;border-radius: 25px;margin-left: 15%;margin-right: 15%; border: solid black 5px ; background-color: white" >
+     <h1 class="sponsor">Our Sponsors</h1>
+     <div class="lines"></div>
+     <div style="margin-bottom: 60px">
+         	 {% for sponsers in sponser_all %}
+         <div class="div1">
+             <a href="https://www.google.com"> <img style="background-color: white; max-height: 400px; max-width: 250px; " src="{{ sponsers.image.url }}"  alt=""></a>
+         <a style="text-decoration: none" href="https://www.google.com"><p class="name-sponsor" style="text-align: center; color: black; font-family: -apple-system,sans-serif ">{{ sponsers.Name }}</p></a>
+         </div>
+         {%  endfor %}
+     </div>
+     </section>
+    
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+  <div class="container">
+      <div class="copyright">
+        <h2 style="text-align: center">Samudramanthan 2020</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Sachin</strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <div id="preloader"></div>
+
+   <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'lib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'ext/js/main.js' %}"></script>
+
+</body>
+
+</html>
+

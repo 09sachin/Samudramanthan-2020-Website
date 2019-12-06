@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  <title>Welcome {{user.username}}</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+   {% load staticfiles %}
+        <!-- Favicons -->
+  <link href="{%  static 'ext/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'ext/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+ <style>
+     .sm-logo-ending{
+         width: 270px; height: 270px;margin-top: 20px;
+     }
+
+     @media screen and (max-width: 1050px){
+         .sm-logo-ending{
+             display: none;
+         }
+     }
+ </style>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'ext/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body style="background: -webkit-linear-gradient(to right, #A5CC82, #00467F);
+background: linear-gradient(to right, #A5CC82, #00467F);">
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+{#        <h1><a href="#intro" class="scrollto">BizPage</a></h1>#}
+
+         <a href="/"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+         <li><a href="/">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/sponsors">sponsers</a></li>
+                <li><a href="/team">Team</a></li>
+               <li><a href="/gallery">Gallery</a></li>
+               {% if user.is_authenticated %}
+                  <li><a class="menu-active" href="{% url 'accounts:profile' %}">
+                      Welcome {{ user.username }}
+                  </a></li>
+                   {%  else %}
+                   <li><a href="/users/sign_in">
+                      Login
+                  </a></li>
+
+                   {% endif %}
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+ {% load crispy_forms_tags %}
+
+
+  <main id="main">
+
+
+    <!--==========================
+      Portfolio Section
+    ============================-->
+
+    <section id="portfolio"  class="section-bg" style="margin-top: 120px" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Register for events</h3>
+
+        </header>
+
+
+ <form method="post" action="">
+         {% csrf_token %}
+
+      {{ form|crispy }}
+{# <div class="form-row">#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="text" name="first_name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required="" />#}
+{##}
+{#              </div>#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required=""/>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{# <div class="form-row">#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="text" name="college" class="form-control" id="name" placeholder="Your college" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required="" />#}
+{##}
+{#              </div>#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="text" class="form-control" name="contact" id="email" placeholder="Your contact no" data-rule="email" data-msg="Please enter a valid email" required=""/>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{# <div class="form-row">#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="text" name="state" class="form-control" id="name" placeholder="Your state" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required="" />#}
+{##}
+{#              </div>#}
+{#              <div class="form-group col-md-6">#}
+{#                <input type="text" class="form-control" name="city" id="email" placeholder="Your city" data-rule="email" data-msg="Please enter a valid email" required=""/>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#              <input type="text" class="form-control" name="birth_date" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required=""/>#}
+{##}
+{#            </div>#}
+{##}
+{# <h1>Events</h1>#}
+{#        <div class="row portfolio-container">#}
+{##}
+{#        <ul>#}
+{#	{% for events in all_details %}#}
+{##}
+{#          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">#}
+{#            <div class="portfolio-wrap">#}
+{#              <figure>#}
+{#                <img style="width: 100px; height: 100px;margin-left: 35%;margin-top: 30%"   src="{{ events.logo.url }}" class="img-fluid" alt="">#}
+{##}
+{#                <a href="/events#gal{{ forloop.counter }}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>#}
+{#              </figure>#}
+{##}
+{#              <div class="portfolio-info">#}
+{#                <h4> <li style="list-style-type: none"><label for="id_events_{{ forloop.counter0 }}"><input style="width: 20px; height: 20px;" type="checkbox" name="events" value="{{ events.Name}}" id="id_events_{{ forloop.counter0 }}">#}
+{#                    <div style="margin-top: 10px">{{ events.Name}}</div></label></li></h4>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{##}
+{#            {% endfor %}#}
+{#            </ul>#}
+{##}
+{##}
+{#        </div>#}
+ <div class="text-center"><button type="submit">Register</button></div>
+     <div class="text-center"> <button style="margin-top: 20px" type="submit"> <a style="text-decoration: none;" href="{% url 'accounts:sign_out' %}" class="txt1"> Log out  </a></button></div>
+    </form>
+      </div>
+
+    </section><!-- #portfolio -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+{#          <div class="col-lg-3 col-md-6 footer-info">#}
+{#            <h3>BizPage</h3>#}
+{#            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>#}
+{#          </div>#}
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+             <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="/">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="/#about">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="/team">Our Team</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="/gallery">Gallery</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="/sponsors">Sponsors</a></li>
+                 <li><i class="ion-ios-arrow-right"></i> <a href="/events">Events</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+           <h4>Contact Us</h4>
+            <p>
+              Department of  <br>
+              Ocean Engineering & Naval architecture <br>
+              IIT Kharagpur <br>
+                721302<br>
+               Kharagpur, West Bengal<br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+            <form action="" method="post">
+                {% csrf_token %}
+              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            </form>
+          </div>
+         <div class="col-lg-3 col-md-6">
+             <img class="sm-logo-ending"  src="{% static 'img/logo.jpg' %}">
+         </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Sachin</strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <div id="preloader"></div>
+
+   <!-- JavaScript Libraries -->
+  <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'lib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'ext/js/main.js' %}"></script>
+
+</body>
+</html>

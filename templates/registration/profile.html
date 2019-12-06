@@ -1,0 +1,90 @@
+{% extends "website/base1.html" %}
+
+{% block style %}
+    <style>
+        @media screen and (min-width:750px) {
+            .grid-50 {
+                margin-left: 200px;
+                margin-right: 200px;
+            }
+            h4, h3{
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+        }
+    @media (min-width: 350px) and (max-width:750px){
+        .grid-50 {
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+
+         h4{
+                font-size: 15px;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+        h3{
+            font-size: 25px;
+                margin-left: 20px;
+                margin-top: 20px;
+
+        }
+    }
+    @media screen and (max-width:349px){
+        h4{
+            margin-left: 20px;
+                margin-top: 20px;
+            font-size: 10px;
+        }
+        h3{
+            margin-left: 20px;
+                margin-top: 20px;
+            font-size: 20px;
+        }
+        .grid-50 {
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+    }
+
+    </style>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="grid-80" >
+        {% if not profile.first_name %}
+            <h2 style="text-align: center;margin-bottom: 50px; font-family:'Old English Text MT', cursive">Please register for events first.</h2>
+            <h3 style="text-align: center; color: navy"><a style="color: #1A2980" href="{% url 'event' %}">Our Events</a></h3>
+            <h3 style="text-align: center; color: navy"><a style="color: #1A2980" href="{% url 'accounts:edit_profile' %}">Register</a></h3>
+            <h3 style="text-align: center; color: navy"><a style="color: #1A2980" href="{% url 'accounts:sign_out' %}">Logout</a></h3>
+        {% else %}
+            <div style="margin-top: 50px; margin-bottom: 50px">
+   <h1 style="text-align: center;font-family:'Old English Text MT', cursive">Registered events </h1>
+          </div>
+
+            <div class="grid-50" style="border: solid black; font-family: cursive">
+                <h4 style="font-family: cursive"><span class="underline">Name</span>: {{ profile.first_name }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">Email</span>: {{ profile.email }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">College</span>: {{ profile.College }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">Contact</span>: {{ profile.Contact }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">City</span>: {{ profile.city }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">State</span>: {{ profile.state }}</h4>
+                <h4 style="font-family: cursive"><span class="underline">Birth Date</span>: {{ profile.birth_date }}</h4>
+            </div>
+            <div class="grid-50" style="border: solid black; margin-top: 10px">
+                <h3 style="font-family: cursive"><span class="underline">Events</span>: {{ profile.events }}</h3>
+            </div>
+
+    </div>
+
+    <div  style="text-align: center; margin-top: 50px" class="grid-20">
+           <div><button><a style="text-decoration: none; color: #1A2980" href="{% url 'accounts:edit_profile' %}">Edit events registered</a></button></div>
+           <div style="margin-top: 20px"><button><a style="text-decoration: none; color: #1A2980" href="{% url 'accounts:sign_out' %}">Sign Out</a></button></div>
+    </div>
+{% endif %}
+{% endblock %}
+
+

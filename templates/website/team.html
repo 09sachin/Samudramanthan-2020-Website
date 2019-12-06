@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="OvrhdVB3ioUcyP9ojV_3yaXwCAkhw50PkNzYItymMVk" />
+  <title>Team Samudramanthan</title>
+    {% load static %}
+
+ <!-- Libraries CSS Files -->
+  <link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{%  static 'assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{%  static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .fa {
+  padding: 10px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+  <header class="header header--bg">
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/sponsors">sponsers</a></li>
+                <li><a href="/team">Team</a></li>
+               <li><a href="/gallery">Gallery</a></li>
+               {% if user.is_authenticated %}
+                  <li><a class="menu-active" href="{% url 'accounts:profile' %}">
+                      Welcome {{ user.username }}
+                  </a></li>
+                   {%  else %}
+                   <li><a href="/users/sign_in">
+                      Login
+                  </a></li>
+
+                   {% endif %}
+
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <section class="slider slider--bg">
+    <div id="myCarousel" class="carousel container slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="carousel-content">
+            <div class="">
+              <div class="text-center">
+                  <img class="carousel-person-image" src="{%  static 'assets/images/team-1.jpg' %}" alt="">
+                <h4>Prof. Anirban Bhattacharyya</h4>
+                <h6>NAROES Advisor</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="carousel-content">
+            <div class="">
+              <div class="text-center">
+                <img class="carousel-person-image" src="{%  static 'assets/images/team-2.jpg' %}" alt="">
+                <h4>Prof. Hari V. Warrior</h4>
+                <h6>Head of department</h6>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="container">
+      <div class="page-section">
+        <h2 class="page-section__title">OUR CORE TEAM</h2>
+        <img class="page-section__title-style" src="{%  static 'assets/images/title-style.png' %}" alt="">
+        <p class="page-section__paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <div class="row gutters-40">
+{% for team in team_details %}
+          <div class="col-md-6 col-lg-3 ">
+            <div class="thumbnail ">
+              <img style="width: 450px; height: 300px;" class="img-responsive" src="{{ team.image.url }}" alt="{{ team.name}}">
+              <h4 class="team__single-section__name">{{ team.name}}</h4>
+              <p class="team__single-section__title">{{ team.post}}</p>
+
+              <div class="team__overlay"  style="margin-top: 220px; height: 50px">
+                <div class="team__overlay__content">
+
+                        <a href="{{ team.fb}}"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-google"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+   <footer class="footer footer--bg">
+    <div class="container text-center">
+      <h1 class="footer__title">SAMUDRAMATHAN</h1>
+      <ul class="footer__contact-information">
+        <li><a href="tel:5555555555"><i class="fa fa-phone"></i>  45 67 89 21</a></li>
+        <li><a href="mailto:samudramanthan2020@gmail.com"><i class="fa fa-envelope"></i> samudramanthan2020@gmail.com</a></li>
+        <li><a href="https://www.google.co.in/maps/@22.3179592,87.3099813,17z"><i class="fa fa-map-marker"></i> IIT kharagpur</a></li>
+      </ul>
+    </div>
+    <hr style="border: 0;border-top: 1px solid #525B60;display:block;margin-top: 40px;">
+
+      <p style="text-align: center" class="footer__paragraph">Copyright &copy; 2019 Sachin , All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{%  static 'assets/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{%  static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{%  static 'js/mixitup.js' %}"></script>
+
+  <script>
+    // calling mixitup
+    var mixer = mixitup(".portfolio");
+  </script>
+</body>
+</html>
